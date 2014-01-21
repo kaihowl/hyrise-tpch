@@ -1,0 +1,15 @@
+{
+    "operators" : {
+      "load": {
+          "type": "TableLoad",
+          "table": "{{tablename}}",
+          "filename" : "hyrise/{{tablename}}.tbl"
+      },
+      "nop" : {
+           "type" : "NoOp"
+      }
+    },
+    "edges": [
+       ["load", "nop"]
+    ]
+}

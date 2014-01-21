@@ -8,5 +8,7 @@ else
   sed "s/|$//g" $1_tmp.tbl > hyrise/$1.tbl
   echo Cleaning up...
   rm $1_tmp.tbl
+  echo Creating the load query file...
+  sed "s/{{tablename}}/$1/g" load_template.json > queries/load_$1.json
   echo Done!
 fi
