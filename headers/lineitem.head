@@ -1,0 +1,4 @@
+orderkey|partkey|suppkey|linenumber|quantity|extendedprice|discount|tax|returnflag|linestatus|shipdate|commitdate|receiptdate|shipinstruct|shipmode|comment
+INTEGER|INTEGER|INTEGER|INTEGER|FLOAT|FLOAT|FLOAT|FLOAT|STRING|STRING|STRING|STRING|STRING|STRING|STRING|STRING
+0_C | 0_C | 0_C | 0_C | 0_C | 0_C | 0_C | 0_C | 0_C | 0_C | 0_C | 0_C | 0_C | 0_C | 0_C | 0_C
+===

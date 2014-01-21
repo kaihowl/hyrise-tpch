@@ -1,0 +1,4 @@
+regionkey|name|comment
+INTEGER|STRING|STRING
+0_C | 0_C | 0_C
+===

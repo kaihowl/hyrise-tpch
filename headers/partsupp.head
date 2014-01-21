@@ -1,0 +1,4 @@
+partkey|suppkey|availqty|supplycost|comment
+INTEGER|INTEGER|INTEGER|FLOAT|STRING
+0_C | 0_C | 0_C | 0_C | 0_C
+===

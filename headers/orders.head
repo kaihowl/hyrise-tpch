@@ -1,0 +1,4 @@
+orderkey|custkey|orderstatus|totalprice|orderdate|orderpriority|clerk|shippriority|comment
+INTEGER|INTEGER|STRING|FLOAT|STRING|STRING|STRING|INTEGER|STRING
+0_C | 0_C | 0_C | 0_C | 0_C | 0_C | 0_C | 0_C | 0_C
+===

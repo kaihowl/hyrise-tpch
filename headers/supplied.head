@@ -1,0 +1,4 @@
+suppkey|name|address|nationkey|phone|acctbal|comment
+INTEGER|STRING|STRING|INTEGER|STRING|FLOAT|STRING
+0_C | 0_C | 0_C | 0_C | 0_C | 0_C | 0_C
+===

@@ -1,0 +1,4 @@
+custkey|name|address|nationkey|phone|acctbal|mktsegment|comment
+INTEGER|STRING|STRING|INTEGER|STRING|FLOAT|STRING|STRING
+0_C | 0_C | 0_C | 0_C | 0_C | 0_C | 0_C | 0_C
+===
