@@ -53,16 +53,10 @@ class Server(object):
     def __init__(self, table_path, log_file=open(os.devnull, 'wb')):
         os.environ["HYRISE_DB_PATH"] = TABLE_PATH
         os.environ["LD_LIBRARY_PATH"] = "./build"
-        self.p = subprocess.Popen(["./build/hyrise-server_release"], stdout=log_file)
-        time.sleep(3)
         self.port = int(open("hyrise_server.port").readlines()[0])
         assert(self.port != 0)
         self._starttime = int(time.time())
-        print "started server", self.port
-
-    def __del__(self):
-        self.p.send_signal(signal.SIGINT)
-        self.p.wait()
+        print "sever was started server", self.port
 
     def get_connection(self):
         return httplib.HTTPConnection("localhost", self.port, strict=False)
