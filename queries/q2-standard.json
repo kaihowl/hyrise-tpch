@@ -1,0 +1,78 @@
+{
+    "operators": {
+        "load_partsupp": {
+          "type": "GetTable",
+          "name": "partsupp"
+        },
+        "load_part": {
+          "type": "GetTable",
+          "name": "part"
+        },
+        "load_supplier": {
+          "type": "GetTable",
+          "name": "supplier"
+        },
+        "load_nation": {
+          "type": "GetTable",
+          "name": "nation"
+        },
+        "load_region": {
+          "type": "GetTable",
+          "name": "region"
+        },
+        "hash_build_part": {
+          "type": "HashBuild",
+          "fields": [0],
+          "key": "join"
+        },
+        "hash_build_supplier": {
+          "type": "HashBuild",
+          "fields": [0],
+          "key": "join"
+        },
+        "hash_build_nation": {
+          "type": "HashBuild",
+          "fields": [0],
+          "key": "join"
+        },
+        "hash_build_region": {
+          "type": "HashBuild",
+          "fields": [0],
+          "key": "join"
+        },
+        "join_partsupp_part": {
+          "type": "HashJoinProbe",
+          "fields": [0]
+        },
+        "join_supplier": {
+          "type": "HashJoinProbe",
+          "fields": [1]
+        },
+        "join_nation": {
+          "type": "HashJoinProbe",
+          "fields": [17]
+        },
+        "join_region": {
+          "type": "HashJoinProbe",
+          "fields": [23]
+        },
+        "noop": {
+          "type": "NoOp"
+        }
+    },
+    "edges": [
+      ["load_partsupp", "join_partsupp_part"],
+      ["load_part", "hash_build_part"],
+      ["hash_build_part", "join_partsupp_part"],
+      ["join_partsupp_part", "join_supplier"],
+      ["load_supplier", "hash_build_supplier"],
+      ["hash_build_supplier", "join_supplier"],
+      ["join_supplier", "join_nation"],
+      ["load_nation", "hash_build_nation"],
+      ["hash_build_nation", "join_nation"],
+      ["join_nation", "join_region"],
+      ["load_region", "hash_build_region"],
+      ["hash_build_region", "join_region"],
+      ["join_region", "noop"]
+    ]
+}
