@@ -1,0 +1,19 @@
+ {
+ "operators" : {
+     "loadf" : {
+        "type" : "LoadDumpedTable",
+        "name" : "{{table_name}}"
+      },
+      "setf" : {
+         "type" : "SetTable",
+         "name" : "{{table_name}}"
+      },
+     "nop": {
+      "type" : "NoOp"
+     }
+  },
+  "edges" : [
+    ["loadf", "setf"],
+    ["setf", "nop"]
+  ]
+}
