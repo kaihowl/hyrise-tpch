@@ -1,0 +1,25 @@
+{
+    "operators" : {
+        "load": {
+            "type": "TableLoad",
+            "table": "{{table_name}}",
+            "filename" : "{{table_file}}"
+        },
+      "getf" : {
+         "type" : "GetTable",
+         "name" : "{{table_name}}"
+      },
+      "df" : {
+           "type" : "DumpTable",
+           "name" : "{{table_name}}"
+      },
+      "nop" : {
+           "type" : "NoOp"
+      }
+    },
+    "edges": [
+       ["load", "getf"],
+       ["getf", "df"],
+       ["df", "nop"]
+    ]
+}
