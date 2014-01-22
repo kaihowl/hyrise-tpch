@@ -1,0 +1,48 @@
+{
+    "operators": {
+        "load_lineitem": {
+          "type": "GetTable",
+          "name": "lineitem"
+        },
+        "load_orders": {
+          "type": "GetTable",
+          "name": "orders"
+        },
+        "load_customer": {
+          "type": "GetTable",
+          "name": "customer"
+        },
+        "hash_build_orders": {
+          "type": "HashBuild",
+          "fields": [0],
+          "key": "join"
+        },
+        "hash_build_customer": {
+          "type": "HashBuild",
+          "fields": [0],
+          "key": "join"
+        },
+        "join_lineitem_orders": {
+          "type": "HashJoinProbe",
+          "fields": [0],
+          "instances": 64
+        },
+        "join_customer": {
+          "type": "HashJoinProbe",
+          "fields": [17],
+          "instances": 64
+        },
+        "noop": {
+          "type": "NoOp"
+        }
+    },
+    "edges": [
+      ["load_lineitem", "join_lineitem_orders"],
+      ["load_orders", "hash_build_orders"],
+      ["hash_build_orders", "join_lineitem_orders"],
+      ["join_lineitem_orders", "join_customer"],
+      ["load_customer", "hash_build_customer"],
+      ["hash_build_customer", "join_customer"],
+      ["join_customer", "noop"]
+    ]
+}
