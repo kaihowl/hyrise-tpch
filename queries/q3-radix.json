@@ -1,0 +1,44 @@
+{
+    "operators": {
+        "load_lineitem": {
+          "type": "GetTable",
+          "name": "lineitem"
+        },
+        "load_orders": {
+          "type": "GetTable",
+          "name": "orders"
+        },
+        "load_customer": {
+          "type": "GetTable",
+          "name": "customer"
+        },
+        "join_lineitem_orders": {
+          "type": "RadixJoin",
+          "bits1": 12,
+          "bits2": 5,
+          "hash_par": 32,
+          "probe_par": 32,
+          "join_par": 32,
+          "fields": [0, 0]
+        },
+        "join_customer": {
+          "type": "RadixJoin",
+          "bits1": 12,
+          "bits2": 5,
+          "hash_par": 32,
+          "probe_par": 32,
+          "join_par": 32,
+          "fields": [17, 0]
+        },
+        "noop": {
+          "type": "NoOp"
+        }
+    },
+    "edges": [
+      ["load_lineitem", "join_lineitem_orders"],
+      ["load_orders", "join_lineitem_orders"],
+      ["join_lineitem_orders", "join_customer"],
+      ["load_customer", "join_customer"],
+      ["join_customer", "noop"]
+    ]
+}
