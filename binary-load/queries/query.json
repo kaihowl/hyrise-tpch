@@ -2,7 +2,7 @@
  "operators" : {
      "loadf" : {
         "type" : "LoadDumpedTable",
-        "name" : "{{table_name}}"
+        "name" : "{{table_dir}}"
       },
       "setf" : {
          "type" : "SetTable",

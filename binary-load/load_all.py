@@ -51,8 +51,6 @@ class User(threading.Thread):
 
 class Server(object):
     def __init__(self, table_path, log_file=open(os.devnull, 'wb')):
-        os.environ["HYRISE_DB_PATH"] = TABLE_PATH
-        os.environ["LD_LIBRARY_PATH"] = "./build"
         self.port = int(open("hyrise_server.port").readlines()[0])
         assert(self.port != 0)
         self._starttime = int(time.time())
@@ -69,10 +67,12 @@ def load_queries(directory):
     return queries
 
 def set_tables(dirname, queries):    
-    table_name = dirname
+    table_dir = dirname
+    table_name = os.path.basename(dirname)
 
     def replace_tables(query): 
         replaced = query[1].replace("{{table_name}}", table_name)
+        replaced = replaced.replace("{{table_dir}}", table_dir)
         return (query[0], replaced)
 
     return map(replace_tables, queries)
