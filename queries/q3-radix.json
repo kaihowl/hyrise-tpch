@@ -21,6 +21,9 @@
           "join_par": 32,
           "fields": [0, 0]
         },
+        "materialize": {
+          "type": "MaterializingScan"
+        },
         "join_customer": {
           "type": "RadixJoin",
           "bits1": 12,
@@ -37,7 +40,8 @@
     "edges": [
       ["load_lineitem", "join_lineitem_orders"],
       ["load_orders", "join_lineitem_orders"],
-      ["join_lineitem_orders", "join_customer"],
+      ["join_lineitem_orders", "materialize"],
+      ["materialize", "join_customer"],
       ["load_customer", "join_customer"],
       ["join_customer", "noop"]
     ]
