@@ -24,11 +24,13 @@
         },
         "ps": {
           "type": "PipelineStream",
-          "chunkSize": 100000
+          "COMMENT": "there are 59986052 rows in lineitem. We want 32 workers.",
+          "chunkSize": 1874565
         },
         "join_lineitem_orders": {
           "type": "PipeliningHashProbe",
           "fields": [0],
+          "TODO": "should we split up further?",
           "chunkSize": 100000
         },
         "join_customer": {

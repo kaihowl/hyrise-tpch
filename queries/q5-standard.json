@@ -1,0 +1,91 @@
+{
+    "operators": {
+        "load_lineitem": {
+          "type": "GetTable",
+          "name": "lineitem"
+        },
+        "load_orders": {
+          "type": "GetTable",
+          "name": "orders"
+        },
+        "load_customer": {
+          "type": "GetTable",
+          "name": "customer"
+        },
+        "load_supplier": {
+          "type": "GetTable",
+          "name": "supplier"
+        },
+        "load_nation": {
+          "type": "GetTable",
+          "name": "nation"
+        },
+        "load_region": {
+          "type": "GetTable",
+          "name": "region"
+        },
+       "hash_build_orders": {
+          "type": "HashBuild",
+          "fields": [0],
+          "key": "join"
+        },
+        "hash_build_customer": {
+          "type": "HashBuild",
+          "fields": [0],
+          "key": "join"
+        },
+        "hash_supplier": {
+          "type": "HashBuild",
+          "fields": [0]
+        },
+        "hash_nation": {
+          "type": "HashBuild",
+          "fields": [0]
+        },
+        "hash_region": {
+          "type": "HashBuild",
+          "fields": [0]
+        },
+        "join_lineitem_orders": {
+          "type": "HashJoinProbe",
+          "fields": [0]
+        },
+        "join_customer": {
+          "type": "HashJoinProbe",
+          "fields": [17]
+        },
+        "join_supplier": {
+          "type": "HashJoinProbe",
+          "fields": [2]
+        },
+        "join_nation": {
+          "type": "HashJoinProbe",
+          "fields": [36]
+        },
+        "join_region": {
+          "type": "HashJoinProbe",
+          "fields": [42]
+        },
+        "noop": {
+          "type": "NoOp"
+        }
+    },
+    "edges": [
+      ["load_lineitem", "join_lineitem_orders"],
+      ["load_orders", "hash_build_orders"],
+      ["hash_build_orders", "join_lineitem_orders"],
+      ["join_lineitem_orders", "join_customer"],
+      ["load_customer", "hash_build_customer"],
+      ["hash_build_customer", "join_customer"],
+      ["join_customer", "join_supplier"],
+      ["load_supplier", "hash_supplier"],
+      ["hash_supplier", "join_supplier"],
+      ["join_supplier", "join_nation"],
+      ["load_nation", "hash_nation"],
+      ["hash_nation", "join_nation"],
+      ["join_nation", "join_region"],
+      ["load_region", "hash_region"],
+      ["hash_region", "join_region"],
+      ["join_region", "noop"]
+    ]
+}

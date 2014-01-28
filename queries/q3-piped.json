@@ -25,6 +25,7 @@
         "join_lineitem_orders": {
           "type": "PipeliningHashProbe",
           "fields": [0],
+          "TODO": "find a good chunk size",
           "chunkSize": 100000
         },
         "join_customer": {

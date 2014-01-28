@@ -25,12 +25,12 @@
         "join_lineitem_orders": {
           "type": "HashJoinProbe",
           "fields": [0],
-          "instances": 64
+          "instances": 32
         },
         "join_customer": {
           "type": "HashJoinProbe",
           "fields": [17],
-          "instances": 64
+          "instances": 32
         },
         "noop": {
           "type": "NoOp"

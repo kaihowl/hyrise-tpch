@@ -40,10 +40,15 @@
           "fields": [0],
           "key": "join"
         },
+        "ps": {
+          "type": "PipelineStream",
+          "COMMENT": "partsupp has 8 mil entries, we want 32 chunks...",
+          "chunkSize": 100000
+        },
         "join_partsupp_part": {
           "type": "PipeliningHashProbe",
           "fields": [0],
-          "TODO": "find good chunkSize",
+          "TODO": "check if further splitting up might improve runtime",
           "chunkSize": 100000
         },
         "join_supplier": {
@@ -69,7 +74,8 @@
         }
     },
     "edges": [
-      ["load_partsupp", "join_partsupp_part"],
+      ["load_partsupp", "ps"],
+      ["ps", "join_partsupp_part"],
       ["load_part", "hash_build_part"],
       ["hash_build_part", "join_partsupp_part"],
       ["join_partsupp_part", "join_supplier"],
