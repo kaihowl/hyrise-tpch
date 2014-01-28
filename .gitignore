@@ -2,3 +2,5 @@ backup*/
 *.tbl
 *.swp
 *.log
+*.svg
+*.eps
